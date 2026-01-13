@@ -1,1074 +1,1031 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOL 名單 - 2026/01/13</title>
+    
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+        font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif; 
+        background: #f5f5f7;
+        min-height: 100vh;
+        padding: 40px 20px; 
+    }
+    h1 {
+        text-align: center;
+        color: #1d1d1f;
+        font-size: 2.2em;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    .stats {
+        text-align: center;
+        color: #86868b;
+        margin-bottom: 30px;
+        font-size: 1em;
+    }
+    .section-title {
+        max-width: 1200px;
+        margin: 30px auto 15px;
+        padding: 10px 0;
+        font-size: 1.3em;
+        font-weight: 600;
+        color: #1d1d1f;
+        border-bottom: 2px solid #e0e0e0;
+    }
+    .section-title:first-of-type {
+        margin-top: 0;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        overflow: hidden;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    .card:hover { 
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+    .card .img-wrapper {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+    }
+    .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+    }
+    .card-body {
+        padding: 12px 10px;
+    }
+    .card h3 { 
+        font-size: 0.85em;
+        font-weight: 600;
+        color: #1d1d1f; 
+        margin-bottom: 2px;
+        line-height: 1.3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .card .real-name {
+        font-size: 0.7em;
+        color: #86868b;
+        margin-bottom: 6px;
+    }
+    .platform-badge {
+        display: inline-block;
+        font-size: 0.65em;
+        padding: 3px 8px;
+        border-radius: 12px;
+        color: white;
+        font-weight: 500;
+    }
+    .platform-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .platform-facebook { background: #1877f2; }
+    .platform-youtube { background: #ff0000; }
+    .platform-manual { background: #86868b; }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    /* 搜尋框樣式 */
+    .search-container {
+        max-width: 500px;
+        margin: 0 auto 30px;
+        position: relative;
+    }
+    .search-input {
+        width: 100%;
+        padding: 14px 20px 14px 50px;
+        border: 2px solid #e0e0e0;
+        border-radius: 30px;
+        font-size: 1em;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+    .search-input:focus {
+        border-color: #667eea;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+    }
+    .search-icon {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2em;
+        color: #86868b;
+    }
+    .card.hidden { display: none; }
+    .no-results {
+        text-align: center;
+        color: #86868b;
+        padding: 40px;
+        grid-column: 1 / -1;
+    }
 
-        body {
-            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
-            background: #f5f5f7;
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #1d1d1f;
-            font-size: 2.2em;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .stats {
-            text-align: center;
-            color: #86868b;
-            margin-bottom: 30px;
-            font-size: 1em;
-        }
-
+    @media (max-width: 768px) {
+        body { padding: 20px 12px; }
+        h1 { font-size: 1.6em; }
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
         }
-
-        .card {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            text-align: center;
-            transition: all 0.3s ease;
+        .card { border-radius: 12px; }
+        .card-body { padding: 10px 8px; }
+        .card h3 { font-size: 0.8em; }
+    }
+    
+    @media (max-width: 400px) {
+        .grid-container {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        .card .img-wrapper {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-        }
-
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-        }
-
-        .card-body {
-            padding: 12px 10px;
-        }
-
-        .card h3 {
-            font-size: 0.85em;
-            font-weight: 600;
-            color: #1d1d1f;
-            margin-bottom: 2px;
-            line-height: 1.3;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .card .real-name {
-            font-size: 0.7em;
-            color: #86868b;
-            margin-bottom: 6px;
-        }
-
-        .platform-badge {
-            display: inline-block;
-            font-size: 0.65em;
-            padding: 3px 8px;
-            border-radius: 12px;
-            color: white;
-            font-weight: 500;
-        }
-
-        .platform-instagram {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-        }
-
-        .platform-facebook {
-            background: #1877f2;
-        }
-
-        .platform-youtube {
-            background: #ff0000;
-        }
-
-        .platform-manual {
-            background: #86868b;
-        }
-
-        /* 搜尋框樣式 */
-        .search-container {
-            max-width: 500px;
-            margin: 0 auto 30px;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 14px 20px 14px 50px;
-            border: 2px solid #e0e0e0;
-            border-radius: 30px;
-            font-size: 1em;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .search-input:focus {
-            border-color: #667eea;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.2em;
-            color: #86868b;
-        }
-
-        .card.hidden {
-            display: none;
-        }
-
-        .no-results {
-            text-align: center;
-            color: #86868b;
-            padding: 40px;
-            grid-column: 1 / -1;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 20px 12px;
-            }
-
-            h1 {
-                font-size: 1.6em;
-            }
-
-            .grid-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-
-            .card {
-                border-radius: 12px;
-            }
-
-            .card-body {
-                padding: 10px 8px;
-            }
-
-            .card h3 {
-                font-size: 0.8em;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .grid-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-        }
-    </style>
+    }
+</style>
 
 </head>
-
 <body>
     <h1>樊登新書發佈會創作者</h1>
-    <p class="stats">共 84 位創作者</p>
+    <p class="stats">共 85 位創作者（A區 13 位 / B區 72 位）</p>
     <div class="search-container">
         <span class="search-icon">🔍</span>
         <input type="text" class="search-input" id="searchInput" placeholder="輸入姓名或社群名稱搜尋..." oninput="filterCards()">
     </div>
+    <h2 class="section-title">⭐ A區</h2>
     <div class="grid-container" id="cardContainer">
-
-        <div class="card" data-name="王昶閔 王昶閔">
-            <div class="img-wrapper">
-                <img src="kol_avatars\30節約男子(王昶閔).jpg" alt="王昶閔" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>30節約男子王昶閔</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="Dawn Chang 張敏訓 Dawn Chang 張敏訓">
-            <div class="img-wrapper">
-                <img src="kol_avatars\Dawn Chang 張敏訓.jpg" alt="Dawn Chang 張敏訓" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>Dawn Chang 張敏訓</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="Filia | 閱讀為筆 | 呂靜函">
-            <div class="img-wrapper">
-                <img src="kol_avatars\Filia _ 閱讀為筆 _(呂靜函).jpg" alt="Filia | 閱讀為筆 |" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>Filia | 閱讀為筆 |</h3>
-                <p class='real-name'>(呂靜函)</p>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="mark.lin mark.lin">
-            <div class="img-wrapper">
-                <img src="kol_avatars\mark.lin.jpg" alt="mark.lin" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>mark.lin</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="katiasusu katiasusu">
-            <div class="img-wrapper">
-                <img src="kol_avatars\katiasusu.jpg" alt="katiasusu" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>katiasusu</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="Megan's Talk Megan's Talk">
-            <div class="img-wrapper">
-                <img src="kol_avatars\Megan's Talk.jpg" alt="Megan's Talk" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>Megan's Talk</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="Min 投資說書小棧 Min">
-            <div class="img-wrapper">
-                <img src="kol_avatars\Min 投資說書小棧.png" alt="Min 投資說書小棧" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>Min 投資說書小棧</h3>
-                <p class='real-name'>(Min)</p>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="徐欣黛 徐欣黛">
-            <div class="img-wrapper">
-                <img src="kol_avatars\Readom讀書會 山山不遲(徐欣黛).jpg" alt="徐欣黛" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>徐欣黛</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="黃若雅 Gina 黃若雅 Gina">
-            <div class="img-wrapper">
-                <img src="kol_avatars\Readom讀書會(黃若雅 Gina).jpg" alt="黃若雅 Gina" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>黃若雅 Gina</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="Sherry's Notes 雪力的心理學筆記 Sherry's Notes 雪力的心理學筆記">
-            <div class="img-wrapper">
-                <img src="kol_avatars\Sherry's Notes 雪力的心理學筆記.jpg" alt="Sherry's Notes 雪力的心理學筆記" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>Sherry's Notes 雪力的心理學筆記</h3>
-                <span class="platform-badge platform-youtube">YouTube</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="SOLER風格誌 吳培菱 SOLER風格誌 吳培菱">
-            <div class="img-wrapper">
-                <img src="kol_avatars\SOLER風格誌 吳培菱.jpg" alt="SOLER風格誌 吳培菱" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>SOLER風格誌 吳培菱</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="Vito 大叔 Vito 大叔">
-            <div class="img-wrapper">
-                <img src="kol_avatars\Vito 大叔.png" alt="Vito 大叔" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>Vito 大叔</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="Wawa Wawa">
-            <div class="img-wrapper">
-                <img src="kol_avatars\Wawa.jpg" alt="Wawa" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>Wawa</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="Yoga Yoga">
-            <div class="img-wrapper">
-                <img src="kol_avatars\YoGa理財備忘錄(張祐嘉(Yoga)).jpg" alt="Yoga" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>Yoga</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="丁菱娟 丁菱娟">
-            <div class="img-wrapper">
-                <img src="kol_avatars\丁菱娟.jpg" alt="丁菱娟" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>丁菱娟</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="亨利溫 亨利溫">
-            <div class="img-wrapper">
-                <img src="kol_avatars\亨利溫.jpg" alt="亨利溫" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>亨利溫</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="人生啊 王小歐">
-            <div class="img-wrapper">
-                <img src="kol_avatars\人生啊(王小歐).jpg" alt="人生啊" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>人生啊</h3>
-                <p class='real-name'>(王小歐)</p>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="任性小編 任性小編">
-            <div class="img-wrapper">
-                <img src="kol_avatars\任性小編.jpg" alt="任性小編" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>任性小編</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="傲嬌爸的養貓日常 張立靜">
-            <div class="img-wrapper">
-                <img src="kol_avatars\傲嬌爸的養貓日常(張立靜).jpg" alt="傲嬌爸的養貓日常" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>傲嬌爸的養貓日常</h3>
-                <p class='real-name'>(張立靜)</p>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="冏星人 冏冏">
-            <div class="img-wrapper">
-                <img src="kol_avatars\冏星人.jpg" alt="冏星人" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>冏星人</h3>
-                <p class='real-name'>(冏冏)</p>
-                <span class="platform-badge platform-youtube">YouTube</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="劉奕酉 劉奕酉">
-            <div class="img-wrapper">
-                <img src="kol_avatars\劉奕酉.jpg" alt="劉奕酉" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>劉奕酉</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="吳健榳 吳健榳">
-            <div class="img-wrapper">
-                <img src="kol_avatars\吳健榳.jpg" alt="吳健榳" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>吳健榳</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="周慕姿放心說 周慕姿放心說">
-            <div class="img-wrapper">
-                <img src="kol_avatars\周慕姿放心說.jpg" alt="周慕姿放心說" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>周慕姿放心說</h3>
-                <span class="platform-badge platform-youtube">YouTube</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="周永富 周永富">
-            <div class="img-wrapper">
-                <img src="kol_avatars\周永富.jpg" alt="周永富" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>周永富</h3>
-                <span class="platform-badge platform-youtube">YouTube</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="張書耘 張書耘">
-            <div class="img-wrapper">
-                <img src="kol_avatars\奧莉的試衣間(張書耘).png" alt="張書耘" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>張書耘</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="婕西l創作者＆專家聲音教練 婕西l創作者＆專家聲音教練">
-            <div class="img-wrapper">
-                <img src="kol_avatars\婕西l創作者＆專家聲音教練.jpg" alt="婕西l創作者＆專家聲音教練" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>婕西l創作者＆專家聲音教練</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="安星閱讀 簡宇慧">
-            <div class="img-wrapper">
-                <img src="kol_avatars\安星閱讀(簡宇慧).jpg" alt="安星閱讀" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>安星閱讀</h3>
-                <p class='real-name'>(簡宇慧)</p>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="小牛講正經 柯昱安">
-            <div class="img-wrapper">
-                <img src="kol_avatars\小牛講正經(柯昱安).jpg" alt="小牛講正經" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>小牛講正經</h3>
-                <p class='real-name'>(柯昱安)</p>
-                <span class="platform-badge platform-youtube">YouTube</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="尚瑞君之愛‧傾聽‧解讀心 尚瑞君之愛‧傾聽‧解讀心">
-            <div class="img-wrapper">
-                <img src="kol_avatars\尚瑞君之愛‧傾聽‧解讀心.jpg" alt="尚瑞君之愛‧傾聽‧解讀心" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>尚瑞君之愛‧傾聽‧解讀心</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="康樂股漲 康樂股漲">
-            <div class="img-wrapper">
-                <img src="kol_avatars\康樂股漲.jpg" alt="康樂股漲" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>康樂股漲</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="心理師想跟你說 心理師想跟你說">
-            <div class="img-wrapper">
-                <img src="kol_avatars\心理師想跟你說.png" alt="心理師想跟你說" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>心理師想跟你說</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="思葒 (S編) 思葒 (S編)">
-            <div class="img-wrapper">
-                <img src="kol_avatars\思葒 (S編).jpg" alt="思葒 (S編)" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>思葒 (S編)</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="悠哉猴的被動收入 悠哉猴的被動收入">
-            <div class="img-wrapper">
-                <img src="kol_avatars\悠哉猴的被動收入.jpg" alt="悠哉猴的被動收入" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>悠哉猴的被動收入</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="愛瑞克 愛瑞克">
-            <div class="img-wrapper">
-                <img src="kol_avatars\愛瑞克.jpg" alt="愛瑞克" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>愛瑞克</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="我們不只是老師 我們不只是老師">
-            <div class="img-wrapper">
-                <img src="kol_avatars\我們不只是老師.jpg" alt="我們不只是老師" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>我們不只是老師</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="我媽叫我不要創業｜蝦皮電商·創業課程·社群經營｜ 我媽叫我不要創業｜蝦皮電商·創業課程·社群經營｜">
-            <div class="img-wrapper">
-                <img src="kol_avatars\我媽叫我不要創業｜蝦皮電商·創業課程·社群經營｜.jpg" alt="我媽叫我不要創業｜蝦皮電商·創業課程·社群經營｜" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>我媽叫我不要創業｜蝦皮電商·創業課程·社群經營｜</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="我是艾姬 我是艾姬">
-            <div class="img-wrapper">
-                <img src="kol_avatars\我是艾姬.png" alt="我是艾姬" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>我是艾姬</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="科技工作講 科技工作講">
-            <div class="img-wrapper">
-                <img src="kol_avatars\抹布 (科技工作講).jpg" alt="科技工作講" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>科技工作講</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="斜槓IC - Irene Irene">
-            <div class="img-wrapper">
-                <img src="kol_avatars\斜槓IC - Irene.png" alt="斜槓IC - Irene" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>斜槓IC - Irene</h3>
-                <p class='real-name'>(Irene)</p>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="斜槓姐姐l股市投資.量化交易 斜槓姐姐">
-            <div class="img-wrapper">
-                <img src="kol_avatars\斜槓姐姐l股市投資.量化交易(斜槓姐姐).jpg" alt="斜槓姐姐l股市投資.量化交易" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>斜槓姐姐l股市投資.量化交易</h3>
-                <p class='real-name'>(斜槓姐姐)</p>
-                <span class="platform-badge platform-youtube">YouTube</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="施 定男｜閱讀個人品牌教練 施 定男｜閱讀個人品牌教練">
-            <div class="img-wrapper">
-                <img src="kol_avatars\施 定男｜閱讀個人品牌教練.jpg" alt="施 定男｜閱讀個人品牌教練" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>施 定男｜閱讀個人品牌教練</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="書食家｜閱讀心得𝐗生活分享 蔡語涵">
-            <div class="img-wrapper">
-                <img src="kol_avatars\書食家｜閱讀心得𝐗生活分享(蔡語涵).jpg" alt="書食家｜閱讀心得𝐗生活分享" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>書食家｜閱讀心得𝐗生活分享</h3>
-                <p class='real-name'>(蔡語涵)</p>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="有魚 有魚">
-            <div class="img-wrapper">
-                <img src="kol_avatars\有魚.jpg" alt="有魚" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>有魚</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="李勛 李勛">
-            <div class="img-wrapper">
-                <img src="kol_avatars\李勛.jpg" alt="李勛" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>李勛</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="李東霖 李東霖">
-            <div class="img-wrapper">
-                <img src="kol_avatars\李東霖.jpg" alt="李東霖" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>李東霖</h3>
-                <span class="platform-badge platform-youtube">YouTube</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="李柏鋒 李柏鋒">
-            <div class="img-wrapper">
-                <img src="kol_avatars\李柏鋒.jpg" alt="李柏鋒" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>李柏鋒</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="林奇芬 林奇芬">
-            <div class="img-wrapper">
-                <img src="kol_avatars\林奇芬.jpg" alt="林奇芬" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>林奇芬</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="林映君 林映君">
-            <div class="img-wrapper">
-                <img src="kol_avatars\林映君.jpg" alt="林映君" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>林映君</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="林柏亦 Eason 林柏亦 Eason">
-            <div class="img-wrapper">
-                <img src="kol_avatars\林柏亦 Eason.jpg" alt="林柏亦 Eason" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>林柏亦 Eason</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="林郁棠 Elton 林郁棠 Elton">
-            <div class="img-wrapper">
-                <img src="kol_avatars\林郁棠 Elton.jpg" alt="林郁棠 Elton" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>林郁棠 Elton</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="歐曜瑋 歐曜瑋">
-            <div class="img-wrapper">
-                <img src="kol_avatars\歐曜瑋.png" alt="歐曜瑋" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>歐曜瑋</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="洛洛老師—情緒x學習雙趨力 洛洛老師—情緒x學習雙趨力">
-            <div class="img-wrapper">
-                <img src="kol_avatars\洛洛老師—情緒x學習雙趨力.jpg" alt="洛洛老師—情緒x學習雙趨力" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>洛洛老師—情緒x學習雙趨力</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="浩爾譯世界 浩爾譯世界">
-            <div class="img-wrapper">
-                <img src="kol_avatars\浩爾譯世界.jpg" alt="浩爾譯世界" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>浩爾譯世界</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="王琬瑜 王琬瑜">
-            <div class="img-wrapper">
-                <img src="kol_avatars\王琬瑜.jpg" alt="王琬瑜" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>王琬瑜</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="王芷|小代書的成長日記 王淑瑜">
-            <div class="img-wrapper">
-                <img src="kol_avatars\王芷_小代書的成長日記(王淑瑜).jpg" alt="王芷|小代書的成長日記" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>王芷|小代書的成長日記</h3>
-                <p class='real-name'>(王淑瑜)</p>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="穿閱時空的1001頁 黃煜翔">
-            <div class="img-wrapper">
-                <img src="kol_avatars\穿閱時空的1001頁(黃煜翔).jpg" alt="穿閱時空的1001頁" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>穿閱時空的1001頁</h3>
-                <p class='real-name'>(黃煜翔)</p>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="簡伶容 簡伶容">
-            <div class="img-wrapper">
-                <img src="kol_avatars\簡伶容.jpg" alt="簡伶容" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>簡伶容</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="糜顧問MR. Muai(jack) 糜顧問MR. Muai(jack)">
-            <div class="img-wrapper">
-                <img src="kol_avatars\糜顧問MR. Muai(jack).jpg" alt="糜顧問MR. Muai(jack)" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>糜顧問MR. Muai(jack)</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="羅鈞鴻／小虎老師 羅鈞鴻／小虎老師">
-            <div class="img-wrapper">
-                <img src="kol_avatars\羅鈞鴻／小虎老師.jpg" alt="羅鈞鴻／小虎老師" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>羅鈞鴻／小虎老師</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="老墨_擊敗教主 擊敗教主">
-            <div class="img-wrapper">
-                <img src="kol_avatars\老墨_擊敗教主(擊敗教主).jpg" alt="老墨_擊敗教主" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>老墨_擊敗教主</h3>
-                <p class='real-name'>(擊敗教主)</p>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="聲音表達講師林依柔 聲音表達講師林依柔">
-            <div class="img-wrapper">
-                <img src="kol_avatars\聲音表達講師林依柔.jpg" alt="聲音表達講師林依柔" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>聲音表達講師林依柔</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="胡偉興 胡偉興">
-            <div class="img-wrapper">
-                <img src="kol_avatars\胡偉興.jpg" alt="胡偉興" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>胡偉興</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="胡咪老師 胡咪老師">
-            <div class="img-wrapper">
-                <img src="kol_avatars\胡咪老師.jpg" alt="胡咪老師" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>胡咪老師</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="胡宗鳳 胡宗鳳">
-            <div class="img-wrapper">
-                <img src="kol_avatars\胡宗鳳.jpg" alt="胡宗鳳" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>胡宗鳳</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="自媒體產業發展協會理事長張延祥 張延祥">
-            <div class="img-wrapper">
-                <img src="kol_avatars\自媒體產業發展協會理事長張延祥.jpg" alt="自媒體產業發展協會理事長張延祥" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>自媒體產業發展協會理事長張延祥</h3>
-                <p class='real-name'>(張延祥)</p>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="航空玄冥 Air Shanmin 航空玄冥 Air Shanmin">
-            <div class="img-wrapper">
-                <img src="kol_avatars\航空玄冥 Air Shanmin.jpg" alt="航空玄冥 Air Shanmin" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>航空玄冥 Air Shanmin</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="蕭慧文 蕭慧文">
-            <div class="img-wrapper">
-                <img src="kol_avatars\蕭慧文.jpg" alt="蕭慧文" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>蕭慧文</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="藍芸的書信世界 藍芸的書信世界">
-            <div class="img-wrapper">
-                <img src="kol_avatars\藍芸的書信世界.jpg" alt="藍芸的書信世界" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>藍芸的書信世界</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="虎克船長詹翔欽 虎克船長詹翔欽">
-            <div class="img-wrapper">
-                <img src="kol_avatars\虎克船長詹翔欽.jpg" alt="虎克船長詹翔欽" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>虎克船長詹翔欽</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="要不要來點稀飯套餐｜投資 X ETF X成長股X 理財 要不要來點稀飯套餐｜投資 X ETF X成長股X 理財">
-            <div class="img-wrapper">
-                <img src="kol_avatars\要不要來點稀飯套餐｜投資 X ETF X成長股X 理財.jpg" alt="要不要來點稀飯套餐｜投資 X ETF X成長股X 理財" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>要不要來點稀飯套餐｜投資 X ETF X成長股X 理財</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="言言語言治療師｜正向教養講師 言言語言治療師">
-            <div class="img-wrapper">
-                <img src="kol_avatars\言言語言治療師｜正向教養講師(言言語言治療師).jpg" alt="言言語言治療師｜正向教養講師" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>言言語言治療師｜正向教養講師</h3>
-                <p class='real-name'>(言言語言治療師)</p>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="超粒方 邱奕淳">
-            <div class="img-wrapper">
-                <img src="kol_avatars\超粒方.png" alt="超粒方" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>超粒方</h3>
-                <p class='real-name'>(邱奕淳)</p>
-                <span class="platform-badge platform-youtube">YouTube</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="跟著魯魯的Map走 跟著魯魯的Map走">
-            <div class="img-wrapper">
-                <img src="kol_avatars\跟著魯魯的Map走.jpg" alt="跟著魯魯的Map走" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>跟著魯魯的Map走</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="鄭美珍 鄭美珍">
-            <div class="img-wrapper">
-                <img src="kol_avatars\鄭美珍.jpg" alt="鄭美珍" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>鄭美珍</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="閱讀人 閱讀人">
-            <div class="img-wrapper">
-                <img src="kol_avatars\閱讀人.jpg" alt="閱讀人" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>閱讀人</h3>
-                <span class="platform-badge platform-manual">Manual</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="陳勁宇 陳捲毛">
-            <div class="img-wrapper">
-                <img src="kol_avatars\陳勁宇(陳捲毛).jpg" alt="陳勁宇" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>陳勁宇</h3>
-                <p class='real-name'>(陳捲毛)</p>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="陳志恆諮商心理師 陳志恆諮商心理師">
-            <div class="img-wrapper">
-                <img src="kol_avatars\陳志恆諮商心理師.jpg" alt="陳志恆諮商心理師" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>陳志恆諮商心理師</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="陳衍任 陳衍任">
-            <div class="img-wrapper">
-                <img src="kol_avatars\陳衍任.jpg" alt="陳衍任" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>陳衍任</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="陳貞穎 陳貞穎">
-            <div class="img-wrapper">
-                <img src="kol_avatars\陳貞穎.jpg" alt="陳貞穎" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>陳貞穎</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="館長小編的圖書館日常 館長小編">
-            <div class="img-wrapper">
-                <img src="kol_avatars\館長小編的圖書館日常.png" alt="館長小編的圖書館日常" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>館長小編的圖書館日常</h3>
-                <p class='real-name'>(館長小編)</p>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="陳哲豪 陳哲豪">
-            <div class="img-wrapper">
-                <img src="kol_avatars\馬克的足跡(陳哲豪).jpg" alt="陳哲豪" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>陳哲豪</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="馬克說書 馬克說書">
-            <div class="img-wrapper">
-                <img src="kol_avatars\馬克說書.jpg" alt="馬克說書" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>馬克說書</h3>
-                <span class="platform-badge platform-instagram">Instagram</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="黃美鳳 黃美鳳">
-            <div class="img-wrapper">
-                <img src="kol_avatars\黃美鳳.jpg" alt="黃美鳳" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>黃美鳳</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
-        <div class="card" data-name="黑媽/王姵文 黑媽/王姵文">
-            <div class="img-wrapper">
-                <img src="kol_avatars\黑媽_王姵文(黑媽_王姵文).jpg" alt="黑媽/王姵文" loading="lazy">
-            </div>
-            <div class="card-body">
-                <h3>黑媽/王姵文</h3>
-                <span class="platform-badge platform-facebook">Facebook</span>
-            </div>
-        </div>
-
+        
+    <div class="card" data-name="丁菱娟 丁菱娟">
+        <div class="img-wrapper">
+            <img src="kol_avatars\丁菱娟.jpg" alt="丁菱娟" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>丁菱娟</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="冏星人 冏冏">
+        <div class="img-wrapper">
+            <img src="kol_avatars\冏星人.jpg" alt="冏星人" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>冏星人</h3><p class='real-name'>(冏冏)</p>
+            <span class="platform-badge platform-youtube">YouTube</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="馬克說書 馬克說書">
+        <div class="img-wrapper">
+            <img src="kol_avatars\馬克說書.jpg" alt="馬克說書" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>馬克說書</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="周慕姿放心說 周慕姿放心說">
+        <div class="img-wrapper">
+            <img src="kol_avatars\周慕姿放心說.jpg" alt="周慕姿放心說" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>周慕姿放心說</h3>
+            <span class="platform-badge platform-youtube">YouTube</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="尚瑞君之愛‧傾聽‧解讀心 尚瑞君之愛‧傾聽‧解讀心">
+        <div class="img-wrapper">
+            <img src="kol_avatars\尚瑞君之愛‧傾聽‧解讀心.jpg" alt="尚瑞君之愛‧傾聽‧解讀心" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>尚瑞君之愛‧傾聽‧解讀心</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="心理師想跟你說 心理師想跟你說">
+        <div class="img-wrapper">
+            <img src="kol_avatars\心理師想跟你說.png" alt="心理師想跟你說" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>心理師想跟你說</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="愛瑞克 愛瑞克">
+        <div class="img-wrapper">
+            <img src="kol_avatars\愛瑞克.jpg" alt="愛瑞克" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>愛瑞克</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="科技工作講 科技工作講">
+        <div class="img-wrapper">
+            <img src="kol_avatars\抹布 (科技工作講).jpg" alt="科技工作講" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>科技工作講</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="施 定男｜閱讀個人品牌教練 施 定男｜閱讀個人品牌教練">
+        <div class="img-wrapper">
+            <img src="kol_avatars\施 定男｜閱讀個人品牌教練.jpg" alt="施 定男｜閱讀個人品牌教練" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>施 定男｜閱讀個人品牌教練</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="李柏鋒 李柏鋒">
+        <div class="img-wrapper">
+            <img src="kol_avatars\李柏鋒.jpg" alt="李柏鋒" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>李柏鋒</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="林奇芬 林奇芬">
+        <div class="img-wrapper">
+            <img src="kol_avatars\林奇芬.jpg" alt="林奇芬" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>林奇芬</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="閱讀人 閱讀人">
+        <div class="img-wrapper">
+            <img src="kol_avatars\閱讀人.jpg" alt="閱讀人" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>閱讀人</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="陳志恆諮商心理師 陳志恆諮商心理師">
+        <div class="img-wrapper">
+            <img src="kol_avatars\陳志恆諮商心理師.jpg" alt="陳志恆諮商心理師" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>陳志恆諮商心理師</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    </div>
+    <h2 class="section-title">📚 B區</h2>
+    <div class="grid-container">
+        
+    <div class="card" data-name="Dawn Chang 張敏訓 Dawn Chang 張敏訓">
+        <div class="img-wrapper">
+            <img src="kol_avatars\Dawn Chang 張敏訓.jpg" alt="Dawn Chang 張敏訓" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>Dawn Chang 張敏訓</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="Filia | 閱讀為筆 | 呂靜函">
+        <div class="img-wrapper">
+            <img src="kol_avatars\Filia _ 閱讀為筆 _(呂靜函).jpg" alt="Filia | 閱讀為筆 |" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>Filia | 閱讀為筆 |</h3><p class='real-name'>(呂靜函)</p>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="Jun 同行人1 Jun 同行人1">
+        <div class="img-wrapper">
+            <img src="kol_avatars\Jun 同行人1.jpg" alt="Jun 同行人1" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>Jun 同行人1</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="Megan's Talk Megan's Talk">
+        <div class="img-wrapper">
+            <img src="kol_avatars\Megan's Talk.jpg" alt="Megan's Talk" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>Megan's Talk</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="Min 投資說書小棧 Min">
+        <div class="img-wrapper">
+            <img src="kol_avatars\Min 投資說書小棧.png" alt="Min 投資說書小棧" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>Min 投資說書小棧</h3><p class='real-name'>(Min)</p>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="SOLER風格誌 吳培菱 SOLER風格誌 吳培菱">
+        <div class="img-wrapper">
+            <img src="kol_avatars\SOLER風格誌 吳培菱.jpg" alt="SOLER風格誌 吳培菱" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>SOLER風格誌 吳培菱</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="Sherry's Notes 雪力的心理學筆記 Sherry's Notes 雪力的心理學筆記">
+        <div class="img-wrapper">
+            <img src="kol_avatars\Sherry's Notes 雪力的心理學筆記.jpg" alt="Sherry's Notes 雪力的心理學筆記" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>Sherry's Notes 雪力的心理學筆記</h3>
+            <span class="platform-badge platform-youtube">YouTube</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="Vito 大叔 Vito 大叔">
+        <div class="img-wrapper">
+            <img src="kol_avatars\Vito 大叔.png" alt="Vito 大叔" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>Vito 大叔</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="Wawa Wawa">
+        <div class="img-wrapper">
+            <img src="kol_avatars\Wawa.jpg" alt="Wawa" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>Wawa</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="Yoga Yoga">
+        <div class="img-wrapper">
+            <img src="kol_avatars\YoGa理財備忘錄(張祐嘉(Yoga)).jpg" alt="Yoga" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>Yoga</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="katiasusu katiasusu">
+        <div class="img-wrapper">
+            <img src="kol_avatars\katiasusu.jpg" alt="katiasusu" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>katiasusu</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="mark.lin mark.lin">
+        <div class="img-wrapper">
+            <img src="kol_avatars\mark.lin.jpg" alt="mark.lin" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>mark.lin</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="亨利溫 亨利溫">
+        <div class="img-wrapper">
+            <img src="kol_avatars\亨利溫.jpg" alt="亨利溫" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>亨利溫</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="人生啊 王小歐">
+        <div class="img-wrapper">
+            <img src="kol_avatars\人生啊(王小歐).jpg" alt="人生啊" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>人生啊</h3><p class='real-name'>(王小歐)</p>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="任性小編 任性小編">
+        <div class="img-wrapper">
+            <img src="kol_avatars\任性小編.jpg" alt="任性小編" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>任性小編</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="傲嬌爸的養貓日常 張立靜">
+        <div class="img-wrapper">
+            <img src="kol_avatars\傲嬌爸的養貓日常(張立靜).jpg" alt="傲嬌爸的養貓日常" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>傲嬌爸的養貓日常</h3><p class='real-name'>(張立靜)</p>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="劉奕酉 劉奕酉">
+        <div class="img-wrapper">
+            <img src="kol_avatars\劉奕酉.jpg" alt="劉奕酉" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>劉奕酉</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="吳健榳 吳健榳">
+        <div class="img-wrapper">
+            <img src="kol_avatars\吳健榳.jpg" alt="吳健榳" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>吳健榳</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="周永富 周永富">
+        <div class="img-wrapper">
+            <img src="kol_avatars\周永富.jpg" alt="周永富" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>周永富</h3>
+            <span class="platform-badge platform-youtube">YouTube</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="婕西l創作者＆專家聲音教練 婕西l創作者＆專家聲音教練">
+        <div class="img-wrapper">
+            <img src="kol_avatars\婕西l創作者＆專家聲音教練.jpg" alt="婕西l創作者＆專家聲音教練" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>婕西l創作者＆專家聲音教練</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="安星閱讀 簡宇慧">
+        <div class="img-wrapper">
+            <img src="kol_avatars\安星閱讀(簡宇慧).jpg" alt="安星閱讀" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>安星閱讀</h3><p class='real-name'>(簡宇慧)</p>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="小牛講正經 柯昱安">
+        <div class="img-wrapper">
+            <img src="kol_avatars\小牛講正經(柯昱安).jpg" alt="小牛講正經" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>小牛講正經</h3><p class='real-name'>(柯昱安)</p>
+            <span class="platform-badge platform-youtube">YouTube</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="康樂股漲 康樂股漲">
+        <div class="img-wrapper">
+            <img src="kol_avatars\康樂股漲.jpg" alt="康樂股漲" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>康樂股漲</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="張書耘 張書耘">
+        <div class="img-wrapper">
+            <img src="kol_avatars\奧莉的試衣間(張書耘).png" alt="張書耘" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>張書耘</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="徐欣黛 徐欣黛">
+        <div class="img-wrapper">
+            <img src="kol_avatars\Readom讀書會 山山不遲(徐欣黛).jpg" alt="徐欣黛" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>徐欣黛</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="思葒 (S編) 思葒 (S編)">
+        <div class="img-wrapper">
+            <img src="kol_avatars\思葒 (S編).jpg" alt="思葒 (S編)" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>思葒 (S編)</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="悠哉猴的被動收入 悠哉猴的被動收入">
+        <div class="img-wrapper">
+            <img src="kol_avatars\悠哉猴的被動收入.jpg" alt="悠哉猴的被動收入" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>悠哉猴的被動收入</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="我們不只是老師 我們不只是老師">
+        <div class="img-wrapper">
+            <img src="kol_avatars\我們不只是老師.jpg" alt="我們不只是老師" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>我們不只是老師</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="我媽叫我不要創業｜蝦皮電商·創業課程·社群經營｜ 我媽叫我不要創業｜蝦皮電商·創業課程·社群經營｜">
+        <div class="img-wrapper">
+            <img src="kol_avatars\我媽叫我不要創業｜蝦皮電商·創業課程·社群經營｜.jpg" alt="我媽叫我不要創業｜蝦皮電商·創業課程·社群經營｜" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>我媽叫我不要創業｜蝦皮電商·創業課程·社群經營｜</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="我是艾姬 我是艾姬">
+        <div class="img-wrapper">
+            <img src="kol_avatars\我是艾姬.png" alt="我是艾姬" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>我是艾姬</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="斜槓IC - Irene Irene">
+        <div class="img-wrapper">
+            <img src="kol_avatars\斜槓IC - Irene.png" alt="斜槓IC - Irene" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>斜槓IC - Irene</h3><p class='real-name'>(Irene)</p>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="斜槓姐姐l股市投資.量化交易 斜槓姐姐">
+        <div class="img-wrapper">
+            <img src="kol_avatars\斜槓姐姐l股市投資.量化交易(斜槓姐姐).jpg" alt="斜槓姐姐l股市投資.量化交易" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>斜槓姐姐l股市投資.量化交易</h3><p class='real-name'>(斜槓姐姐)</p>
+            <span class="platform-badge platform-youtube">YouTube</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="書食家｜閱讀心得𝐗生活分享 蔡語涵">
+        <div class="img-wrapper">
+            <img src="kol_avatars\書食家｜閱讀心得𝐗生活分享(蔡語涵).jpg" alt="書食家｜閱讀心得𝐗生活分享" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>書食家｜閱讀心得𝐗生活分享</h3><p class='real-name'>(蔡語涵)</p>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="有魚 有魚">
+        <div class="img-wrapper">
+            <img src="kol_avatars\有魚.jpg" alt="有魚" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>有魚</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="李勛 李勛">
+        <div class="img-wrapper">
+            <img src="kol_avatars\李勛.jpg" alt="李勛" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>李勛</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="李東霖 李東霖">
+        <div class="img-wrapper">
+            <img src="kol_avatars\李東霖.jpg" alt="李東霖" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>李東霖</h3>
+            <span class="platform-badge platform-youtube">YouTube</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="林映君 林映君">
+        <div class="img-wrapper">
+            <img src="kol_avatars\林映君.jpg" alt="林映君" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>林映君</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="林柏亦 Eason 林柏亦 Eason">
+        <div class="img-wrapper">
+            <img src="kol_avatars\林柏亦 Eason.jpg" alt="林柏亦 Eason" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>林柏亦 Eason</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="林郁棠 Elton 林郁棠 Elton">
+        <div class="img-wrapper">
+            <img src="kol_avatars\林郁棠 Elton.jpg" alt="林郁棠 Elton" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>林郁棠 Elton</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="歐曜瑋 歐曜瑋">
+        <div class="img-wrapper">
+            <img src="kol_avatars\歐曜瑋.png" alt="歐曜瑋" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>歐曜瑋</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="洛洛老師—情緒x學習雙趨力 洛洛老師—情緒x學習雙趨力">
+        <div class="img-wrapper">
+            <img src="kol_avatars\洛洛老師—情緒x學習雙趨力.jpg" alt="洛洛老師—情緒x學習雙趨力" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>洛洛老師—情緒x學習雙趨力</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="浩爾譯世界 浩爾譯世界">
+        <div class="img-wrapper">
+            <img src="kol_avatars\浩爾譯世界.jpg" alt="浩爾譯世界" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>浩爾譯世界</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="王昶閔 王昶閔">
+        <div class="img-wrapper">
+            <img src="kol_avatars\30節約男子(王昶閔).jpg" alt="王昶閔" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>王昶閔</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="王琬瑜 王琬瑜">
+        <div class="img-wrapper">
+            <img src="kol_avatars\王琬瑜.jpg" alt="王琬瑜" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>王琬瑜</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="王芷|小代書的成長日記 王淑瑜">
+        <div class="img-wrapper">
+            <img src="kol_avatars\王芷_小代書的成長日記(王淑瑜).jpg" alt="王芷|小代書的成長日記" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>王芷|小代書的成長日記</h3><p class='real-name'>(王淑瑜)</p>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="穿閱時空的1001頁 黃煜翔">
+        <div class="img-wrapper">
+            <img src="kol_avatars\穿閱時空的1001頁(黃煜翔).jpg" alt="穿閱時空的1001頁" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>穿閱時空的1001頁</h3><p class='real-name'>(黃煜翔)</p>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="簡伶容 簡伶容">
+        <div class="img-wrapper">
+            <img src="kol_avatars\簡伶容.jpg" alt="簡伶容" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>簡伶容</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="糜顧問MR. Muai(jack) 糜顧問MR. Muai(jack)">
+        <div class="img-wrapper">
+            <img src="kol_avatars\糜顧問MR. Muai(jack).jpg" alt="糜顧問MR. Muai(jack)" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>糜顧問MR. Muai(jack)</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="羅鈞鴻／小虎老師 羅鈞鴻／小虎老師">
+        <div class="img-wrapper">
+            <img src="kol_avatars\羅鈞鴻／小虎老師.jpg" alt="羅鈞鴻／小虎老師" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>羅鈞鴻／小虎老師</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="老墨_擊敗教主 擊敗教主">
+        <div class="img-wrapper">
+            <img src="kol_avatars\老墨_擊敗教主(擊敗教主).jpg" alt="老墨_擊敗教主" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>老墨_擊敗教主</h3><p class='real-name'>(擊敗教主)</p>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="聲音表達講師林依柔 聲音表達講師林依柔">
+        <div class="img-wrapper">
+            <img src="kol_avatars\聲音表達講師林依柔.jpg" alt="聲音表達講師林依柔" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>聲音表達講師林依柔</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="胡偉興 胡偉興">
+        <div class="img-wrapper">
+            <img src="kol_avatars\胡偉興.jpg" alt="胡偉興" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>胡偉興</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="胡咪老師 胡咪老師">
+        <div class="img-wrapper">
+            <img src="kol_avatars\胡咪老師.jpg" alt="胡咪老師" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>胡咪老師</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="胡宗鳳 胡宗鳳">
+        <div class="img-wrapper">
+            <img src="kol_avatars\胡宗鳳.jpg" alt="胡宗鳳" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>胡宗鳳</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="自媒體產業發展協會理事長張延祥 張延祥">
+        <div class="img-wrapper">
+            <img src="kol_avatars\自媒體產業發展協會理事長張延祥.jpg" alt="自媒體產業發展協會理事長張延祥" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>自媒體產業發展協會理事長張延祥</h3><p class='real-name'>(張延祥)</p>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="航空玄冥 Air Shanmin 航空玄冥 Air Shanmin">
+        <div class="img-wrapper">
+            <img src="kol_avatars\航空玄冥 Air Shanmin.jpg" alt="航空玄冥 Air Shanmin" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>航空玄冥 Air Shanmin</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="蕭慧文 蕭慧文">
+        <div class="img-wrapper">
+            <img src="kol_avatars\蕭慧文.jpg" alt="蕭慧文" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>蕭慧文</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="藍芸的書信世界 藍芸的書信世界">
+        <div class="img-wrapper">
+            <img src="kol_avatars\藍芸的書信世界.jpg" alt="藍芸的書信世界" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>藍芸的書信世界</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="虎克船長詹翔欽 虎克船長詹翔欽">
+        <div class="img-wrapper">
+            <img src="kol_avatars\虎克船長詹翔欽.jpg" alt="虎克船長詹翔欽" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>虎克船長詹翔欽</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="要不要來點稀飯套餐｜投資 X ETF X成長股X 理財 要不要來點稀飯套餐｜投資 X ETF X成長股X 理財">
+        <div class="img-wrapper">
+            <img src="kol_avatars\要不要來點稀飯套餐｜投資 X ETF X成長股X 理財.jpg" alt="要不要來點稀飯套餐｜投資 X ETF X成長股X 理財" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>要不要來點稀飯套餐｜投資 X ETF X成長股X 理財</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="言言語言治療師｜正向教養講師 言言語言治療師">
+        <div class="img-wrapper">
+            <img src="kol_avatars\言言語言治療師｜正向教養講師(言言語言治療師).jpg" alt="言言語言治療師｜正向教養講師" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>言言語言治療師｜正向教養講師</h3><p class='real-name'>(言言語言治療師)</p>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="超粒方 邱奕淳">
+        <div class="img-wrapper">
+            <img src="kol_avatars\超粒方.png" alt="超粒方" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>超粒方</h3><p class='real-name'>(邱奕淳)</p>
+            <span class="platform-badge platform-youtube">YouTube</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="跟著魯魯的Map走 跟著魯魯的Map走">
+        <div class="img-wrapper">
+            <img src="kol_avatars\跟著魯魯的Map走.jpg" alt="跟著魯魯的Map走" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>跟著魯魯的Map走</h3>
+            <span class="platform-badge platform-manual">Manual</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="鄭美珍 鄭美珍">
+        <div class="img-wrapper">
+            <img src="kol_avatars\鄭美珍.jpg" alt="鄭美珍" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>鄭美珍</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="陳勁宇 陳捲毛">
+        <div class="img-wrapper">
+            <img src="kol_avatars\陳勁宇(陳捲毛).jpg" alt="陳勁宇" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>陳勁宇</h3><p class='real-name'>(陳捲毛)</p>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="陳哲豪 陳哲豪">
+        <div class="img-wrapper">
+            <img src="kol_avatars\馬克的足跡(陳哲豪).jpg" alt="陳哲豪" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>陳哲豪</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="陳衍任 陳衍任">
+        <div class="img-wrapper">
+            <img src="kol_avatars\陳衍任.jpg" alt="陳衍任" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>陳衍任</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="陳貞穎 陳貞穎">
+        <div class="img-wrapper">
+            <img src="kol_avatars\陳貞穎.jpg" alt="陳貞穎" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>陳貞穎</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="館長小編的圖書館日常 館長小編">
+        <div class="img-wrapper">
+            <img src="kol_avatars\館長小編的圖書館日常.png" alt="館長小編的圖書館日常" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>館長小編的圖書館日常</h3><p class='real-name'>(館長小編)</p>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="黃美鳳 黃美鳳">
+        <div class="img-wrapper">
+            <img src="kol_avatars\黃美鳳.jpg" alt="黃美鳳" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>黃美鳳</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="黃若雅 Gina 黃若雅 Gina">
+        <div class="img-wrapper">
+            <img src="kol_avatars\Readom讀書會(黃若雅 Gina).jpg" alt="黃若雅 Gina" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>黃若雅 Gina</h3>
+            <span class="platform-badge platform-instagram">Instagram</span>
+        </div>
+    </div>
+    
+    <div class="card" data-name="黑媽/王姵文 黑媽/王姵文">
+        <div class="img-wrapper">
+            <img src="kol_avatars\黑媽_王姵文(黑媽_王姵文).jpg" alt="黑媽/王姵文" loading="lazy">
+        </div>
+        <div class="card-body">
+            <h3>黑媽/王姵文</h3>
+            <span class="platform-badge platform-facebook">Facebook</span>
+        </div>
+    </div>
+    
     </div>
     <script>
         function filterCards() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const cards = document.querySelectorAll('.card');
             let visibleCount = 0;
-
+            
             cards.forEach(card => {
                 const name = card.getAttribute('data-name').toLowerCase();
                 if (name.includes(query)) {
@@ -1078,7 +1035,7 @@
                     card.classList.add('hidden');
                 }
             });
-
+            
             // 顯示無結果提示
             let noResults = document.querySelector('.no-results');
             if (visibleCount === 0 && query) {
@@ -1094,5 +1051,4 @@
         }
     </script>
 </body>
-
 </html>

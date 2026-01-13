@@ -85,6 +85,39 @@ for img_name, img_path in existing_images.items():
 
 print(f"匹配成功 {len(results)} 位 KOL")
 
+# A區優先名單
+priority_list = [
+    "丁菱娟",
+    "冏星人",
+    "馬克說書",
+    "周慕姿",
+    "尚瑞君",
+    "心理師想跟你說",
+    "愛瑞克",
+    "科技工作講",
+    "施 定男",
+    "李柏鋒",
+    "林奇芬",
+    "閱讀人",
+    "陳志恆諮商心理師",
+]
+
+# 排序函數：A區優先
+def get_priority(kol):
+    display = kol['display_name']
+    clean = kol['clean_name']
+    for i, name in enumerate(priority_list):
+        if name in display or name in clean:
+            return (0, i)  # A區，按名單順序
+    return (1, display)  # B區，按名稱排序
+
+results.sort(key=get_priority)
+
+# 分區結果
+a_zone = [k for k in results if get_priority(k)[0] == 0]
+b_zone = [k for k in results if get_priority(k)[0] == 1]
+print(f"A區: {len(a_zone)} 位, B區: {len(b_zone)} 位")
+
 # 生成 HTML
 css_style = """
 <style>
@@ -107,6 +140,18 @@ css_style = """
         color: #86868b;
         margin-bottom: 30px;
         font-size: 1em;
+    }
+    .section-title {
+        max-width: 1200px;
+        margin: 30px auto 15px;
+        padding: 10px 0;
+        font-size: 1.3em;
+        font-weight: 600;
+        color: #1d1d1f;
+        border-bottom: 2px solid #e0e0e0;
+    }
+    .section-title:first-of-type {
+        margin-top: 0;
     }
     .grid-container {
         display: grid;
@@ -225,8 +270,8 @@ css_style = """
 </style>
 """
 
-cards_html = ""
-for kol in results:
+
+def generate_card_html(kol):
     platform = kol.get('platform', 'Manual')
     platform_class = f"platform-{platform.lower()}"
     display_name = kol['display_name']
@@ -237,7 +282,7 @@ for kol in results:
     else:
         name_html = f"<h3>{display_name}</h3>"
     
-    cards_html += f"""
+    return f"""
     <div class="card" data-name="{display_name} {clean_name}">
         <div class="img-wrapper">
             <img src="{kol['path']}" alt="{display_name}" loading="lazy">
@@ -249,6 +294,17 @@ for kol in results:
     </div>
     """
 
+# 生成 A區 卡片
+a_zone_cards = ""
+for kol in a_zone:
+    a_zone_cards += generate_card_html(kol)
+
+# 生成 B區 卡片
+b_zone_cards = ""
+for kol in b_zone:
+    b_zone_cards += generate_card_html(kol)
+
+
 full_html = f"""<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -259,13 +315,18 @@ full_html = f"""<!DOCTYPE html>
 </head>
 <body>
     <h1>樊登新書發佈會創作者</h1>
-    <p class="stats">共 {len(results)} 位創作者</p>
+    <p class="stats">共 {len(results)} 位創作者（A區 {len(a_zone)} 位 / B區 {len(b_zone)} 位）</p>
     <div class="search-container">
         <span class="search-icon">🔍</span>
         <input type="text" class="search-input" id="searchInput" placeholder="輸入姓名或社群名稱搜尋..." oninput="filterCards()">
     </div>
+    <h2 class="section-title">⭐ A區</h2>
     <div class="grid-container" id="cardContainer">
-        {cards_html}
+        {a_zone_cards}
+    </div>
+    <h2 class="section-title">📚 B區</h2>
+    <div class="grid-container">
+        {b_zone_cards}
     </div>
     <script>
         function filterCards() {{

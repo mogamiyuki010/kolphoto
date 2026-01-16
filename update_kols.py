@@ -4,9 +4,7 @@ with open('kol_list_cleaned.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 new_kols = [
-    {'name': '李勛', 'display_name': '李勛', 'social_link': 'https://www.youtube.com/c/SHINLI', 'email': ''},
-    {'name': '王昶閔', 'display_name': '30節約男子', 'social_link': 'https://www.instagram.com/setsuyaku_0/', 'email': ''},
-    {'name': '抹布', 'display_name': '科技工作講', 'social_link': 'https://www.facebook.com/clubhousetechjob/', 'email': ''},
+    {'name': '李建復', 'display_name': '愛播聽書podcast', 'social_link': 'https://www.facebook.com/aibotingshupodcast/', 'email': ''},
 ]
 
 existing_names = set(k['name'] for k in data)
